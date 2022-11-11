@@ -41,38 +41,38 @@ tabTable['Slack'] = {
     left = { mod = {'option'}, key = 'up' },
     right = { mod = {'option'}, key = 'down' }
 }
-tabTable['Safari'] = {
-    left = { mod = {'control', 'shift'}, key = 'tab' },
-    right = { mod = {'control'}, key = 'tab' }
-}
-tabTable['터미널'] = {
-    left = { mod = {'control', 'shift'}, key = 'tab' },
-    right = { mod = {'control'}, key = 'tab' }
-}
-tabTable['Terminal'] = {
+tabTable['Chrome'] = {
     left = { mod = {'control', 'shift'}, key = 'tab' },
     right = { mod = {'control'}, key = 'tab' }
 }
 tabTable['iTerm2'] = {
-    left = { mod = {'shift', 'command'}, key = '[' },
-    right = { mod = {'shift', 'command'}, key = ']' }
+    left = { mod = {'control', 'shift'}, key = 'tab' },
+    right = { mod = {'control'}, key = 'tab' }
 }
-tabTable['IntelliJ IDEA'] = {
-    left = { mod = {'command', 'shift'}, key = '[' },
-    right = { mod = {'command', 'shift'}, key = ']' }
-}
-tabTable['PhpStorm'] = {
-    left = { mod = {'command', 'shift'}, key = '[' },
-    right = { mod = {'command', 'shift'}, key = ']' }
-}
-tabTable['Code'] = {
-    left = { mod = {'command', 'shift'}, key = '[' },
-    right = { mod = {'command', 'shift'}, key = ']' }
-}
-tabTable['DataGrip'] = {
-    left = { mod = {'command', 'shift'}, key = '[' },
-    right = { mod = {'command', 'shift'}, key = ']' }
-}
+--tabTable['Terminal'] = {
+--    left = { mod = {'control', 'shift'}, key = 'tab' },
+--    right = { mod = {'control'}, key = 'tab' }
+--}
+--tabTable['iTerm2'] = {
+--    left = { mod = {'shift', 'command'}, key = '[' },
+--    right = { mod = {'shift', 'command'}, key = ']' }
+--}
+--tabTable['IntelliJ IDEA'] = {
+--    left = { mod = {'command', 'shift'}, key = '[' },
+--    right = { mod = {'command', 'shift'}, key = ']' }
+--}
+--tabTable['PhpStorm'] = {
+--    left = { mod = {'command', 'shift'}, key = '[' },
+--    right = { mod = {'command', 'shift'}, key = ']' }
+--}
+--tabTable['Code'] = {
+--    left = { mod = {'command', 'shift'}, key = '[' },
+--    right = { mod = {'command', 'shift'}, key = ']' }
+--}
+--tabTable['DataGrip'] = {
+--    left = { mod = {'command', 'shift'}, key = '[' },
+--    right = { mod = {'command', 'shift'}, key = ']' }
+--}
 tabTable['_else_'] = {
     left = { mod = {'control'}, key = 'pageup' },
     right = { mod = {'control'}, key = 'pagedown' }
@@ -82,7 +82,7 @@ local function tabMove(dir)
     return function()
         -- vimlike.close()
         local activeAppName = hs.application.frontmostApplication():name()
-        local tab = tabTable[activeAppName] or tabTable['_else_']
+        local tab = tabTalble[activeAppName] or tabTable['_else_']
         hs.eventtap.event.newKeyEvent(tab[dir]['mod'], tab[dir]['key'], true):post()
     end
 end
@@ -124,29 +124,30 @@ local left_event_map = {
 }
 
 local right_event_map = {
+    -- ''
     -- app_toggle
     { key = ',', mod = {}, func = app_toggle('System Preferences'), msg = 'System Preferences' },
     { key = '/', mod = {}, func = app_toggle('Activity Monitor') },
-    { key = 'a', mod = {}, func = app_toggle('safari') },
+    --{ key = 'a', mod = {}, func = app_toggle('safari') },
     { key = 'c', mod = {}, func = app_toggle('Google Chrome') },
     { key = 'd', mod = {}, func = app_toggle('discord') },
     { key = 'e', mod = {}, func = app_toggle('Finder') },
-    { key = 'f', mod = {}, func = app_toggle('Firefox') },
-    { key = 'g', mod = {}, func = app_toggle('DataGrip') },
-    { key = 'i', mod = {}, func = app_toggle('IntelliJ IDEA') },
+    --{ key = 'f', mod = {}, func = app_toggle('Firefox') },
+    --{ key = 'g', mod = {}, func = app_toggle('DataGrip') },
+    --{ key = 'i', mod = {}, func = app_toggle('IntelliJ IDEA') },
     { key = 'k', mod = {}, func = app_toggle('KakaoTalk') },
     -- { key = 'l', mod = {}, func = app_toggle('Line') },
     -- { key = 'm', mod = {}, func = app_toggle('NoSQLBooster for MongoDB') },
     { key = 'n', mod = {}, func = app_toggle('Notes') },
     -- { key = 'o', mod = {}, func = app_toggle('Microsoft OneNote') },
     { key = 'p', mod = {}, func = app_toggle('Preview') },
-    { key = 'q', mod = {}, func = app_toggle('Sequel Pro') },
+    --{ key = 'q', mod = {}, func = app_toggle('Sequel Pro') },
     { key = 'r', mod = {}, func = app_toggle('draw.io') },
     { key = 's', mod = {}, func = app_toggle('Slack') },
     { key = 't', mod = {}, func = app_toggle('Telegram') },
     { key = 'v', mod = {}, func = app_toggle('VimR') },
     { key = 'v', mod = {'shift'}, func = app_toggle('Visual Studio Code') },
-    { key = 'x', mod = {}, func = app_toggle('Microsoft Excel') },
+    --{ key = 'x', mod = {}, func = app_toggle('Microsoft Excel') },
     { key = 'space', mod = {}, func = app_toggle('iTerm') },
     { key = 'space', mod = {'shift'}, func = app_toggle('Terminal') },
     { key = 'w', mod = {}, func = app_toggle('WezTerm') },
@@ -174,10 +175,12 @@ local right_event_map = {
 
 do
     local left_event_runner = require('modules.event_runner')
-    left_event_runner:init('f13', left_event_map)
+    --left_event_runner:init('f13', left_event_map)
+    left_event_runner:init('f1', left_event_map)
 
     local right_event_runner = require('modules.event_runner')
-    right_event_runner:init('f17', right_event_map)
+    --right_event_runner:init('f17', right_event_map)
+    right_event_runner:init('f2', right_event_map)
 end
 
 
