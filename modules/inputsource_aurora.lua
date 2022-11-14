@@ -17,13 +17,15 @@ function enable_show()
     hs.fnutils.each(hs.screen.allScreens(), function(scr)
         local frame = scr:fullFrame()
 
+	--aurora box for top
         local box = newBox()
         draw_rectangle(box, frame.x, frame.y, frame.w, box_height, GREEN)
         table.insert(boxes, box)
 
-        local box2 = newBox()
-        draw_rectangle(box2, frame.x, frame.y + frame.h - 10, frame.w, box_height, GREEN)
-        table.insert(boxes, box2)
+	--aurora box for bottom
+        --local box2 = newBox()
+        --draw_rectangle(box2, frame.x, frame.y + frame.h - 10, frame.w, box_height, GREEN)
+        --table.insert(boxes, box2)
     end)
 end
 
