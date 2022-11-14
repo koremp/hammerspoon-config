@@ -197,7 +197,7 @@ function plugInstall()
     hs.alert.show('plugin installed')
 end
 
-require('modules.Caffeine'):init(spoon)
+-- require('modules.Caffeine'):init(spoon)
 require('modules.inputsource_aurora')
 require('modules.touch')
 
