@@ -31,7 +31,7 @@ function app_toggle(name, secondName)
 
         local screen = hs.window.focusedWindow():frame()
         local pt = hs.geometry.rectMidPoint(screen)
-        hs.mouse.setAbsolutePosition(pt)
+        hs.mouse.absolutePosition(pt)
     end
 end
 
