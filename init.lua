@@ -10,8 +10,8 @@ local app_man = require('modules.appman')
 local app_mode = hs.hotkey.modal.new()
 
 hs.window.animationDuration = 0
-
 function app_toggle(name, secondName)
+
     if secondName == nil then
         -- FIXME: uuid 말고 대책을 마련하라
         secondName = '85ED2184-ABF5-4924-AE3F-B702622B858D'
@@ -49,6 +49,10 @@ tabTable['iTerm2'] = {
     left = { mod = {'control', 'shift'}, key = 'tab' },
     right = { mod = {'control'}, key = 'tab' }
 }
+tabTable['Code'] = {
+    left = { mod = {'command', 'shift'}, key = '[' },
+    right = { mod = {'command', 'shift'}, key = ']' }
+}
 --tabTable['Terminal'] = {
 --    left = { mod = {'control', 'shift'}, key = 'tab' },
 --    right = { mod = {'control'}, key = 'tab' }
@@ -65,9 +69,6 @@ tabTable['iTerm2'] = {
 --    left = { mod = {'command', 'shift'}, key = '[' },
 --    right = { mod = {'command', 'shift'}, key = ']' }
 --}
---tabTable['Code'] = {
---    left = { mod = {'command', 'shift'}, key = '[' },
---    right = { mod = {'command', 'shift'}, key = ']' }
 --}
 --tabTable['DataGrip'] = {
 --    left = { mod = {'command', 'shift'}, key = '[' },
@@ -113,7 +114,7 @@ local left_event_map = {
     { key = 'n', mod = {}, func = app_toggle('Notion') },
     { key = 'm', mod = {}, func = app_toggle('Google Meet') },
     { key = 'd', mod = {}, func = app_toggle('dictionary') },
-    { key = 'p', mod = {}, func = app_toggle('Postman') },
+ --   { key = 'p', mod = {}, func = app_toggle('Postman') },
     { key = 'r', mod = {}, func = app_toggle('Reminders') },
     { key = 'h', mod = {}, func = rapidKey({}, 'left') },
     { key = 'j', mod = {}, func = rapidKey({}, 'down') },
@@ -192,13 +193,15 @@ function plugInstall()
     local Install=spoon.SpoonInstall
     Install:updateRepo('default')
 
-    Install:installSpoonFromRepo('Caffeine')
+    --Install:installSpoonFromRepo('Caffeine')
 
     hs.alert.show('plugin installed')
 end
 
--- require('modules.Caffeine'):init(spoon)
-require('modules.inputsource_aurora')
+--화면 자동 꺼지는 기능인 Caffeine을 비활성화
+--require('modules.Caffeine'):init(spoon)
+--한영키 전환에 따라 화면 상단 백그라운드 색상이 바뀌게 하는 inputsource_aurora 비활성화
+--require('modules.inputsource_aurora')
 require('modules.touch')
 
 function dump(o)
